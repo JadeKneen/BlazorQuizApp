@@ -1,0 +1,29 @@
+﻿<h2>Question</h2>
+<p>What colours are the Manx Flag?</p>
+<br />
+<h2>Answers</h2>
+<input type="text" id="answer" hidden="hidden" @bind="CorrectAnswer" />
+<input type="text" @bind="UserAnswer"/>
+<button type="button" @onclick="CheckAnswer" id="CheckAnswerButton" @bind="ColourOfButton">Check Answer</button>
+
+@code {
+    [Parameter]
+    public string CorrectAnswer { get; set; } = "yellow red";
+    public string UserAnswer { get; set; }
+    
+    public void CheckAnswer()
+    {
+        foreach(var word in UserAnswer.ToLower())
+        {
+            if (CorrectAnswer.Contains(word))
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
+
+    }
+}
