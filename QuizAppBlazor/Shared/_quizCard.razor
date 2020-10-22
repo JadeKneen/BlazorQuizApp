@@ -2,28 +2,41 @@
 <p>What colours are the Manx Flag?</p>
 <br />
 <h2>Answers</h2>
-<input type="text" id="answer" hidden="hidden" @bind="CorrectAnswer" />
+
 <input type="text" @bind="UserAnswer"/>
-<button type="button" @onclick="CheckAnswer" id="CheckAnswerButton" @bind="ColourOfButton">Check Answer</button>
+<button type="button" @onclick="CheckAnswer" disabled=@ButtonDisabled>Check Answer</button>
+
+<p>Answer: @result</p>
 
 @code {
     [Parameter]
-    public string CorrectAnswer { get; set; } = "yellow red";
+    public string CorrectAnswer { get; set; } = "red";
     public string UserAnswer { get; set; }
-    
-    public void CheckAnswer()
+    public string result = "";
+    public bool ButtonDisabled = false;
+
+    void CheckAnswer()
     {
-        foreach(var word in UserAnswer.ToLower())
+
+        if(UserAnswer.Length >= 0)
         {
-            if (CorrectAnswer.Contains(word))
+            ButtonDisabled = true;
+            if (UserAnswer.ToLower() == CorrectAnswer.ToLower())
             {
-                
+                result = "correct";
             }
             else
             {
-                
+                result = "incorrect";
             }
         }
+        else
+        {
+            ButtonDisabled = false;
+            result = "No answer added";
+        }
+
 
     }
+
 }
